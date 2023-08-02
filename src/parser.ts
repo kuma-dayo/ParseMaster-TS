@@ -57,8 +57,8 @@ export default class Parser {
 
       if (one != 1 || three != 3) throw new Error("wtf")
 
-      const key = this.parseFieldType("vuint", null, reader)
-      const value = this.parseFieldType("string", null, reader)
+      const key = this.parseFieldType("vuint", reader)
+      const value = this.parseFieldType("string", reader)
 
       items.push(`"${key}": ${value}`)
     }
@@ -138,7 +138,7 @@ export default class Parser {
         const fieldType = config.Fields[fieldName]
 
         if (bm.TestBit(j)) {
-          const ret = this.parseFieldType(fieldType, className, reader)
+          const ret = this.parseFieldType(fieldType, reader)
 
           logger.debug(`Field (${j}) ${fieldName}, type: ${fieldType} = ${ret.length < 500 ? ret : "500 over"}`)
           output.push(`"${fieldName}": ${ret}`)
@@ -155,21 +155,21 @@ export default class Parser {
     return output
   }
 
-  private parseFieldType(fieldType: string, className: string, reader: DeReader) {
+  private parseFieldType(fieldType: string, reader: DeReader) {
     switch (true) {
-      case fieldType.endsWith("[]") && !!Config[className]: {
+      case fieldType.endsWith("[]"): {
         const items: string[] = []
         fieldType = fieldType.slice(0, -2)
 
-        const attribute = (<Config.ConfigDefault>Config[className]).attribute
+        const attribute = (<Config.ConfigDefault>Config[fieldType])?.attribute
         const length =
-          attribute.includes("excel") && !attribute.includes("nozig")
-            ? Number(reader.readVarUInt())
-            : reader.readVarInt()
+          attribute?.includes("excel") && !attribute?.includes("nozig")
+            ? reader.readVarInt()
+            : Number(reader.readVarUInt())
 
         logger.debug(`(${length}) [`)
         for (let i = 0; i < length; i++) {
-          items.push(this.parseFieldType(fieldType, className, reader))
+          items.push(this.parseFieldType(fieldType, reader))
         }
         logger.debug(`]`)
 
