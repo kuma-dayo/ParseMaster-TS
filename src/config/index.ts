@@ -4,6 +4,7 @@ export * from "./EntityExcelConfig"
 export * from "./FightPropGrowConfig"
 export * from "./MonsterDrop"
 export * from "./MonsterExcelConfig"
+
 export interface ConfigDefault {
   attribute: string[]
   // baseClass: ConfigDefault // TODO: baseClass: Config.TestClass
@@ -11,4 +12,8 @@ export interface ConfigDefault {
   Fields: {
     [key: string]: string //TODO: I want to make the type explicit
   }
+}
+
+export function get(name: string): ConfigDefault {
+  return <ConfigDefault>this[name]
 }

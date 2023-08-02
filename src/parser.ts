@@ -71,8 +71,11 @@ export default class Parser {
     const derivedClass: string = null
     let rootClassname = className
 
-    //TODO derivedClass
+    if (derivation && this.hasDerivedClasses(className)) {
+      rootClassname = this.getBasestBase(className)
 
+      let classId = reader.readVarUInt()
+    }
     if (!derivedClass) {
       rootClassname = this.getBasestBase(className)
       output = this.parseClassInt(className, reader, rootClassname)
@@ -81,26 +84,25 @@ export default class Parser {
     return `{${output.join(",")}}`
   }
 
+  hasDerivedClasses(className: string): boolean {
+    return Config.get(className).baseClass != null
+  }
   getBasestBase(className: string) {
     let baseClass = className
-    while (<Config.ConfigDefault>Config[baseClass]) {
-      baseClass = Config[baseClass].baseClass
+    while (Config.get(baseClass)) {
+      baseClass = Config.get(baseClass).baseClass
     }
 
     return baseClass
   }
 
   mergeFields(fields: { [key: string]: string }, className: string) {
-    const config = <Config.ConfigDefault>Config[className]
-    const baseconfig = <Config.ConfigDefault>Config[config.baseClass]
+    const config = Config.get(className)
+    const baseconfig = Config.get(config.baseClass)
 
-    if (!baseconfig) {
-      return fields
-    }
+    if (!baseconfig) return fields
+    else if (!baseconfig.Fields) throw new Error(`Base class ${config.baseClass} not found!`)
 
-    if (!baseconfig.Fields) {
-      throw new Error(`Base class ${config.baseClass} not found!`)
-    }
     baseconfig.Fields = this.mergeFields(baseconfig.Fields, config.baseClass)
 
     const mergedFields: { [key: string]: string } = fields
@@ -115,7 +117,7 @@ export default class Parser {
 
   parseClassInt(className: string, reader: DeReader, baseClassName?: string) {
     const output: string[] = []
-    const config = <Config.ConfigDefault>Config[className]
+    const config = Config.get(className)
     // Config[]
     if (!config) throw new Error(`Class ${className} not found!`)
 
@@ -126,17 +128,14 @@ export default class Parser {
       config.Fields = this.mergeFields(config.Fields, className)
     }
 
-    const fieldKeys = Object.keys(config.Fields)
-
-    logger.debug(`Parsing Class ${className} (${fieldKeys.length} fields)`)
+    const fields = Object.entries(config.Fields)
+    logger.debug(`Parsing Class ${className} (${fields.length} fields)`)
 
     let j = 0
-    if (fieldKeys.length > 0) {
-      const bm = isExcel ? new ExcelBitMask(reader) : new BinOutBitMask(reader, fieldKeys.length <= 8)
+    if (fields.length > 0) {
+      const bm = isExcel ? new ExcelBitMask(reader) : new BinOutBitMask(reader, fields.length <= 8)
 
-      fieldKeys.forEach((fieldName) => {
-        const fieldType = config.Fields[fieldName]
-
+      fields.forEach(([fieldName, fieldType]: [string, string]) => {
         if (bm.TestBit(j)) {
           const ret = this.parseFieldType(fieldType, reader)
 
@@ -161,7 +160,7 @@ export default class Parser {
         const items: string[] = []
         fieldType = fieldType.slice(0, -2)
 
-        const attribute = (<Config.ConfigDefault>Config[fieldType])?.attribute
+        const attribute = Config.get(fieldType)?.attribute
         const length =
           attribute?.includes("excel") && !attribute?.includes("nozig")
             ? reader.readVarInt()
@@ -176,7 +175,7 @@ export default class Parser {
         return `[${items.join(", ")}]`
       }
       case !!ConfigEnum[fieldType]: {
-        const configEnum = <ConfigEnum.EnumDefault>ConfigEnum[fieldType]
+        const configEnum = ConfigEnum.get(fieldType)
 
         const value = configEnum.__signed ? reader.readVarInt() : reader.readVarUInt()
         const sValue = configEnum.types[value.toString()]

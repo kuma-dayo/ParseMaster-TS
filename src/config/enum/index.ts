@@ -13,3 +13,7 @@ export interface EnumDefault {
   __signed: boolean
   types: any
 }
+
+export function get(name: string): EnumDefault {
+  return <EnumDefault>this[name]
+}
