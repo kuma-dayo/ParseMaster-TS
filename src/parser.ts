@@ -1,4 +1,4 @@
-import { BitMask } from "./bitMask"
+import { BinOutBitMask, ExcelBitMask } from "./bitMask"
 import * as Config from "./config"
 import * as ConfigEnum from "./config/enum"
 import DeReader from "./deReader"
@@ -132,7 +132,7 @@ export default class Parser {
 
     let j = 0
     if (fieldKeys.length > 0) {
-      const bm = isExcel ? new BitMask(reader) : null //TODO: new BitMask(reader, fieldKeys.length <= 8)
+      const bm = isExcel ? new ExcelBitMask(reader) : new BinOutBitMask(reader, fieldKeys.length <= 8)
 
       fieldKeys.forEach((fieldName) => {
         const fieldType = config.Fields[fieldName]

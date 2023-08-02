@@ -1,12 +1,22 @@
 import DeReader from "./deReader"
 
-export class BitMask {
-  private readonly _len: bigint
-  private readonly _mask: bigint
-  private readonly _excelMask?: number[]
+class BitMask {
+  protected _len: bigint
+  protected _mask: bigint
+  protected _excelMask?: number[]
 
+  public TestBit(index: number): boolean {
+    if (index >= Number(this._len) * 8) return false
+
+    return this._excelMask !== undefined
+      ? (this._excelMask[index >> 5] & (1 << (index & 0x1f))) !== 0
+      : (this._mask & (1n << BigInt(index))) !== BigInt(0)
+  }
+}
+
+export class ExcelBitMask extends BitMask {
   constructor(reader: DeReader) {
-    //TODO: BinOutput
+    super()
 
     this._len = reader.readVarUInt()
     this._excelMask = new Array<number>(Number(this._len / BigInt(4)) + 1)
@@ -23,12 +33,13 @@ export class BitMask {
       this._excelMask[Number(this._len / BigInt(4))] |= reader.readU8() << (i * 8)
     }
   }
+}
 
-  public TestBit(index: number): boolean {
-    if (index >= Number(this._len) * 8) return false
+export class BinOutBitMask extends BitMask {
+  constructor(reader: DeReader, small: boolean) {
+    super()
 
-    return this._excelMask !== undefined
-      ? (this._excelMask[index >> 5] & (1 << (index & 0x1f))) !== 0
-      : (this._mask & (1n << BigInt(index))) !== BigInt(0)
+    this._mask = small ? BigInt(reader.readU8()) : reader.readVarUInt()
+    this._len = BigInt(8)
   }
 }
