@@ -1,10 +1,10 @@
 import { ConfigDefault } from "."
 
 export const FightPropGrowConfig: ConfigDefault = {
-  isExcel: true,
+  attribute: ["excel", "nozig"],
   baseClass: null,
   Fields: {
     type: "FightPropType",
-    grow_curve: "GrowCurveType",
+    growCurve: "GrowCurveType",
   },
 }

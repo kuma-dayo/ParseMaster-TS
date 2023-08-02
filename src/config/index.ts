@@ -2,9 +2,10 @@ export * from "./AvatarExcelConfig"
 export * from "./CreatureExcelConfig"
 export * from "./EntityExcelConfig"
 export * from "./FightPropGrowConfig"
-
+export * from "./MonsterDrop"
+export * from "./MonsterExcelConfig"
 export interface ConfigDefault {
-  isExcel: boolean
+  attribute: string[]
   // baseClass: ConfigDefault // TODO: baseClass: Config.TestClass
   baseClass: string
   Fields: {

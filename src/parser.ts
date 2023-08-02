@@ -120,7 +120,7 @@ export default class Parser {
     if (!config) throw new Error(`Class ${className} not found!`)
 
     const hasBase = !!config.baseClass || (!!baseClassName && className.includes(baseClassName))
-    const isExcel = config.isExcel
+    const isExcel = config.attribute.includes("excel")
 
     if (hasBase && isExcel) {
       config.Fields = this.mergeFields(config.Fields, className)
@@ -140,7 +140,7 @@ export default class Parser {
         if (bm.TestBit(j)) {
           const ret = this.parseFieldType(fieldType, reader)
 
-          logger.debug(`Field (${j}) ${fieldName}, type: ${fieldType} = ${ret}`)
+          logger.debug(`Field (${j}) ${fieldName}, type: ${fieldType} = ${ret.length < 500 ? ret : "500 over"}`)
           output.push(`"${fieldName}": ${ret}`)
         } else {
           logger.debug(`Skipping field (${j}) ${fieldName}`)

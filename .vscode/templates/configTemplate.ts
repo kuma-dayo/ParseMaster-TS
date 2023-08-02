@@ -1,7 +1,7 @@
 import { ConfigDefault } from "."
 
 export const {{name}}: ConfigDefault = {
-  isExcel: true,
+  attribute: [],
   baseClass: null,
   Fields: {},
 }

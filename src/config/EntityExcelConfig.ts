@@ -1,7 +1,7 @@
 import { ConfigDefault } from "."
 
 export const EntityExcelConfig: ConfigDefault = {
-  isExcel: true,
+  attribute: ["excel"],
   baseClass: null,
   Fields: {
     id: "vuint",

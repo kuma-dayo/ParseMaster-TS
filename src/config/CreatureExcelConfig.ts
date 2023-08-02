@@ -1,12 +1,12 @@
 import { ConfigDefault } from "."
 
 export const CreatureExcelConfig: ConfigDefault = {
-  isExcel: true,
+  attribute: ["excel"],
   baseClass: "EntityExcelConfig",
   Fields: {
-    hp_base: "float",
-    attack_base: "float",
-    defense_base: "float",
+    hpBase: "float",
+    attackBase: "float",
+    defenseBase: "float",
     critical: "float",
     antiCritical: "float",
     criticalHurt: "float",
@@ -28,7 +28,7 @@ export const CreatureExcelConfig: ConfigDefault = {
     elementMastery: "float",
     physicalSubHurt: "float",
     physicalAddHurt: "float",
-    prefabPathRagdollHashSuffix: "vuint",
+    prefabPathHashSuffix: "vuint",
     prefabPathHash: "vuint",
   },
 }

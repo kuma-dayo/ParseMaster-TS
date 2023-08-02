@@ -1,0 +1,33 @@
+import { ConfigDefault } from "."
+
+export const MonsterExcelConfig: ConfigDefault = {
+  attribute: ["excel"],
+  baseClass: "CreatureExcelConfig",
+  Fields: {
+    monsterName: "string",
+    type: "MonsterType",
+    securityLevel: "MonsterSecurityLevel",
+    scriptDataPathHash: "vuint",
+    serverScript: "string",
+    combatConfigHash: "vuint",
+    affix: "vuint[]",
+    ai: "string",
+    isAIHashCheck: "bool",
+    equips: "vuint[]",
+    canSwim: "bool",
+    hpDrops: "MonsterDrop[]",
+    killDropId: "vuint",
+    isSceneReward: "bool",
+    visionLevel: "VisionLevelType",
+    isInvisibleReset: "bool",
+    excludeWeathers: "string",
+    featureTagGroupID: "vuint",
+    mpPropID: "vuint",
+    skin: "string",
+    describeId: "vuint",
+    safetyCheck: "bool",
+    combatBGMLevel: "vint",
+    entityBudgetLevel: "vint",
+    radarHintID: "vuint",
+  },
+}

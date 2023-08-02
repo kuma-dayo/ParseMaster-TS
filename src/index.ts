@@ -9,6 +9,7 @@ import { FileType } from "./FileType"
 import PMLogger from "./logger"
 import Parser from "./parser"
 import { mkdir, writeFile } from "./utils/fileSystem"
+
 const inputFolder = join(cwd(), "Data")
 const outputFolder = join(cwd(), "Json")
 
@@ -16,6 +17,7 @@ const logger = PMLogger.getInstance()
 
 let suc = 0
 let fail = 0
+let skip = 0
 
 ;(async () => {
   const start = performance.now()
@@ -25,7 +27,7 @@ let fail = 0
   const done = performance.now()
 
   logger.info(`Completed in ${(done - start) / 1000}s`)
-  logger.info(`Succeeded: ${suc} Failed: ${fail} `)
+  logger.info(`Succeeded: ${suc} Failed: ${fail} Skip: ${skip} `)
 })()
 
 async function parse(input: string): Promise<void> {
@@ -48,11 +50,13 @@ async function parse(input: string): Promise<void> {
         await mkdir(dirname(fileOutputPath), { recursive: true })
         await writeFile(fileOutputPath, JSONbig.stringify(JSONbig.parse(output), null, 2))
 
-        logger.info(`finished Parse mode: ${FileType[mode]} file: ${file.name}`)
+        logger.info(`finished mode: ${FileType[mode]} file: ${file.name}`)
         suc++
       } catch (ex) {
         logger.error(`Failed to process ${file.name}: ${ex.message}`)
-        fail++
+
+        if ((ex.message as string).includes("not found")) skip++
+        else fail++
       }
     })
   )
