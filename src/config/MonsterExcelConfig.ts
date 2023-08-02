@@ -26,8 +26,8 @@ export const MonsterExcelConfig: ConfigDefault = {
     skin: "string",
     describeId: "vuint",
     safetyCheck: "bool",
-    combatBGMLevel: "vint",
-    entityBudgetLevel: "vint",
+    combatBGMLevel: "vuint",
+    entityBudgetLevel: "vuint",
     radarHintID: "vuint",
   },
 }

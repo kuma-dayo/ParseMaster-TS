@@ -28,7 +28,7 @@ export const CreatureExcelConfig: ConfigDefault = {
     elementMastery: "float",
     physicalSubHurt: "float",
     physicalAddHurt: "float",
-    prefabPathHashSuffix: "vuint",
+    Unk370_BKLAFFOKPHO: "vuint",
     prefabPathHash: "vuint",
   },
 }

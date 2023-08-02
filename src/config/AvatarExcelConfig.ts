@@ -1,7 +1,7 @@
 import { ConfigDefault } from "."
 
 export const AvatarExcelConfig: ConfigDefault = {
-  attribute: ["excel", "nozig"],
+  attribute: ["excel"],
   baseClass: "CreatureExcelConfig",
   Fields: {
     useType: "AvatarUseType",

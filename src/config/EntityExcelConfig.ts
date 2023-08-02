@@ -6,7 +6,7 @@ export const EntityExcelConfig: ConfigDefault = {
   Fields: {
     id: "vuint",
     nameTextMapHash: "vuint",
-    prefabPathHash: "vuint",
+    Unk370_GDKMJAFHCMK: "vuint",
     prefabPathRemoteHash: "vuint",
     controllerPathHash: "vuint",
     controllerPathRemoteHash: "vuint",
