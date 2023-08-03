@@ -1,0 +1,31 @@
+import { ConfigDefault } from "../"
+
+export const SceneExcelConfig: ConfigDefault = {
+  attribute: ["excel"],
+  baseClass: null,
+  Fields: {
+    id: "vuint",
+    type: "SceneType",
+    subtype: "SceneSubType",
+    ignoreNavMesh: "bool",
+    useToTheMoon: "bool",
+    navmeshMode: "NavmeshModeType",
+    scriptData: "string",
+    overrideDefaultProfile: "string",
+    levelEntityConfig: "string",
+    entityAppearSorted: "vuint",
+    specifiedAvatarList: "vuint[]",
+    maxSpecifiedAvatarNum: "vuint",
+    sceneFixTime: "float",
+    comment: "string",
+    safePoint: "vuint",
+    mpType: "SceneMpType",
+    isAllowMapMarkPoint: "bool",
+    isDeleteMapMarkPoint: "bool",
+    dungeonEntryPoint: "vuint[]",
+    _HACK__19: "__HACK_",
+    _HACK__20: "__HACK_",
+    _HACK__21: "__HACK_",
+    imageSceneId: "vuint",
+  },
+}

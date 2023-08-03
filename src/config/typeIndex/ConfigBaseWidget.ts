@@ -1,0 +1,25 @@
+import { TypeIndexDefault } from "./"
+
+export const ConfigBaseWidget: TypeIndexDefault = {
+  "0": "ConfigBaseWidget",
+  "1": "ConfigWidgetAnchorPoint",
+  "2": "ConfigWidgetBonfire",
+  "3": "ConfigWidgetCondenseResin",
+  "4": "ConfigWidgetLunchBox",
+  "5": "ConfigWidgetOneoffGatherPointDetector",
+  "6": "ConfigWidgetClientDetector",
+  "7": "ConfigWidgetClientCollector",
+  "8": "ConfigWidgetAttachAvatar",
+  "9": "ConfigWidgetTreasureMapDetector",
+  "10": "ConfigWidgetGadgetBuilder",
+  "11": "ConfigWidgetTakePhoto",
+  "12": "ConfigWidgetBlessingCamera",
+  "13": "ConfigWidgetMiracleRing",
+  "14": "ConfigWidgetWaterSprite",
+  "15": "ConfigWidgetWaterSpriteToy",
+  "16": "ConfigWidgetAbilityGroupGenerator",
+  "17": "ConfigWidgetOpenPage",
+  "18": "ConfigWidgetUseAttachAbilityGroupToy",
+  "19": "ConfigWidgetUseItemToy",
+  "20": "ConfigWidgetAddBuffToy",
+}

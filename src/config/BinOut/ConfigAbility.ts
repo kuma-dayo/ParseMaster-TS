@@ -1,0 +1,30 @@
+import { ConfigDefault } from "../"
+
+export const ConfigAbility: ConfigDefault = {
+  attribute: [],
+  baseClass: null,
+  Fields: {
+    abilityName: "string",
+    abilityMixins: "ConfigAbilityMixin[]",
+    abilitySpecials: "map<string,DynamicArgument>",
+    modifiers: "map<string,ConfigAbilityModifier>",
+    defaultModifier: "ConfigAbilityModifier",
+    onAdded: "ConfigAbilityAction[]",
+    onRemoved: "ConfigAbilityAction[]",
+    onAbilityStart: "ConfigAbilityAction[]",
+    onKill: "ConfigAbilityAction[]",
+    onFieldEnter: "ConfigAbilityAction[]",
+    onFieldExit: "ConfigAbilityAction[]",
+    onAttach: "ConfigAbilityAction[]",
+    onDetach: "ConfigAbilityAction[]",
+    onAvatarIn: "ConfigAbilityAction[]",
+    onAvatarOut: "ConfigAbilityAction[]",
+    onVehicleIn: "ConfigAbilityAction[]",
+    onVehicleOut: "ConfigAbilityAction[]",
+    onTriggerAvatarRay: "ConfigAbilityAction[]",
+    onZoneEnter: "ConfigAbilityAction[]",
+    onZoneExit: "ConfigAbilityAction[]",
+    isDynamicAbility: "bool",
+    abilityDefinedProperties: "map<string,ConfigAbilityPropertyEntry>",
+  },
+}

@@ -1,0 +1,31 @@
+import { ConfigDefault } from "../"
+
+export const MainQuestExcelConfig: ConfigDefault = {
+  attribute: ["excel"],
+  baseClass: null,
+  Fields: {
+    id: "vuint",
+    resId: "vuint",
+    series: "vuint",
+    type: "QuestType",
+    mainQuestTag: "MainQuestTagType",
+    activeMode: "PlayMode",
+    titleTextMapHash: "vuint",
+    descTextMapHash: "vuint",
+    luaPath: "string",
+    recommendLevel: "vuint",
+    repeatable: "bool",
+    suggestTrackMainQuestList: "vuint[]",
+    suggestTrackOutOfOrder: "bool",
+    rewardIdList: "vuint[]",
+    showType: "QuestShowType",
+    chapterId: "vuint",
+    taskId: "vuint",
+    showRedPoint: "bool",
+    activityId: "vuint",
+    isRelease: "bool",
+    specialShowRewardId: "vuint[]",
+    specialShowCondIdList: "vuint[]",
+    specialShowQuestId: "vuint",
+  },
+}

@@ -1,0 +1,32 @@
+import { ConfigDefault } from "../"
+
+export const ConfigGuideWidgetContent: ConfigDefault = {
+  attribute: [],
+  baseClass: null,
+  Fields: {
+    path: "string",
+    contextName: "string",
+    hintInfo: "string",
+    widghtInfo: "string",
+    warningInfo: "string",
+    whiteContextList: "string[]",
+    actionInfoList: "InputActionType[]",
+    inputHintList: "ConfigInputHint[]",
+    widghtInfoPos: "WidgetInfoPos",
+    maskType: "MaskGuideType",
+    maskPassEasyTouch: "bool",
+    type: "ButtonGuideType",
+    xOffset: "float",
+    yOffset: "float",
+    hintOffset: "float",
+    special: "GuideWidgetSpecialType",
+    value: "float",
+    valueStr: "string",
+    pageType: "GuidePageType",
+    maskIndex: "vint",
+    keepScale: "bool",
+    generalConditionType: "GuideGeneralConditionType",
+    generalConditionVal: "bool",
+    saveIndex: "vint",
+  },
+}

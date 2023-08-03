@@ -1,0 +1,31 @@
+import { ConfigDefault } from "../"
+
+export const ConfigAISkillCastCondition: ConfigDefault = {
+  attribute: [],
+  baseClass: null,
+  Fields: {
+    pose: "vint[]",
+    needReInitCD: "bool",
+    minTargetAngleXZ: "float",
+    maxTargetAngleXZ: "float",
+    maxTargetAngleY: "float",
+    minTargetAngleY: "float",
+    pickRangeMin: "float",
+    pickRangeMax: "float",
+    pickRangeYMax: "float",
+    pickRangeYMin: "float",
+    pickRangeByRaycast: "ConfigAIRaycastCondition[]",
+    SkillAnchorRangeMin: "float",
+    SkillAnchorRangeMax: "float",
+    skillAnchorAngle: "ConfigAIAngleXZ_Y",
+    TargetSkillAnchorRangeMin: "float",
+    TargetSkillAnchorRangeMax: "float",
+    castRangeType: "CondfigAIRangeType",
+    castRangeMin: "float",
+    castRangeMax: "float",
+    castRangeXZ_Y: "ConfigAICastRangeXZ_Y",
+    globalValues: "string[]",
+    globalValuesLogicAnd: "bool",
+    globalValuesTargetType: "AISkillTargetType",
+  },
+}

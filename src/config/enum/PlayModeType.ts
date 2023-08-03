@@ -1,0 +1,43 @@
+import { EnumDefault } from "."
+
+enum types {
+  Normal = 0,
+  Sneak = 1,
+  DvalinS01FlyState = 2,
+  Bomber = 3,
+  FindCat = 4,
+  WildSneak = 5,
+  GlidingChallengeState = 6,
+  LookAtCameraState = 7,
+  FleurFairFall = 8,
+  EndoraState = 9,
+  FleurFairBalloon = 10,
+  HideAndSeek = 11,
+  HideAndSeek_Ghost = 12,
+  Vehicle_Skiff = 13,
+  BounceConjuring = 14,
+  ActivityAimState = 15,
+  ElectricCoreState = 16,
+  Fishing = 17,
+  AvatarTransMove = 18,
+  AvatarTransMove_NoJump = 19,
+  Tail = 20,
+  WinterCampRace = 21,
+  Bartender = 22,
+  UGCForbidSkill = 23,
+  Blocking = 24,
+  BlackMud = 25,
+  LannaluoState = 26,
+  GrapplingHook = 27,
+  BoarHunt = 28,
+  BoarChuck = 29,
+  BoarKingChallenge = 30,
+  FungusFighterBattle = 31,
+  CharAmuseBaseball = 32,
+  CharAmuseFootball = 33,
+}
+
+export const PlayModeType: EnumDefault = {
+  __signed: true,
+  types: types,
+}

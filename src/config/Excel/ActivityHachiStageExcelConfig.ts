@@ -1,0 +1,32 @@
+import { ConfigDefault } from "../"
+
+export const ActivityHachiStageExcelConfig: ConfigDefault = {
+  attribute: ["excel"],
+  baseClass: null,
+  Fields: {
+    Id: "vuint",
+    stageId: "vuint",
+    questId: "vuint[]",
+    questTitleTextMapHash: "vuint",
+    questDescTextMapHash: "vuint",
+    stealthTitleTextMapHash: "vuint",
+    battleDescTextMapHash: "vuint",
+    stealthWatcher: "vuint",
+    battleWatcher: "vuint",
+    stealthGroup: "string",
+    battleGroup: "string",
+    stealthPushTips: "vuint",
+    battlePushTips: "vuint",
+    pushTip: "vuint",
+    openDay: "vuint",
+    stealthTriggerPointMarkPos: "float[]",
+    stealthMarkPos: "float[]",
+    battleMarkPos: "float[]",
+    finalQuestId: "vuint[]",
+    mapMarkLoadQuest: "vuint[]",
+    stealthChallengeIndex: "vuint",
+    battleChallengeIndex: "vuint",
+    stealthRadius: "vuint",
+    battleRadius: "vuint",
+  },
+}

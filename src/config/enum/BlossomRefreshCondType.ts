@@ -1,0 +1,16 @@
+import { EnumDefault } from "."
+
+enum types {
+  BLOSSOM_REFRESH_COND_NONE = 0,
+  BLOSSOM_REFRESH_COND_PLAYER_LEVEL_EQUAL_GREATER = 1,
+  BLOSSOM_REFRESH_COND_PLAYER_LEVEL_LESS_THAN = 2,
+  BLOSSOM_REFRESH_COND_OPEN_STATE = 3,
+  BLOSSOM_REFRESH_COND_QUEST_FINISH = 4,
+  BLOSSOM_REFRESH_COND_ACTIVITY_COND = 5,
+  BLOSSOM_REFRESH_COND_SCENE_TAG_ADDED = 6,
+}
+
+export const BlossomRefreshCondType: EnumDefault = {
+  __signed: true,
+  types: types,
+}

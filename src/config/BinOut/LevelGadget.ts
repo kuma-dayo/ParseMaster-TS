@@ -1,0 +1,31 @@
+import { ConfigDefault } from "../"
+
+export const LevelGadget: ConfigDefault = {
+  attribute: [],
+  baseClass: null,
+  Fields: {
+    groupId: "vuint",
+    mapInstId: "vuint",
+    followMove_AttachPoint: "string",
+    followMove_targetInstanceId: "vuint",
+    gadgetMisc_UnlockShowCutScene: "bool",
+    gadgetMisc_ChestShowMoment: "ChestShowMoment",
+    gadgetMisc_ChestShowUIRemind: "ChestShowUIRemind",
+    gadgetMisc_ChestShowCtsType: "ChestShowCutsceneType",
+    billboard_HasUIBar: "bool",
+    billboard_ShowUIBarDis: "float",
+    billboard_HideUIBarDis: "float",
+    billboard_UIBarNeedEnterCombat: "bool",
+    billboard_HpBarStyle: "HpBarStyle",
+    targetIndicator_Type: "TargetIndicatorType",
+    ui_Indicator: "ConfigTemplateData",
+    targetIndicator_TaskID: "vuint",
+    billboard_MultiBarSortId: "vuint",
+    billboard_MultiBarNum: "vuint",
+    trigger: "ConfigTriggerOverride",
+    followRotateOffset: "Vector",
+    followRotateForwardOfffset: "Vector",
+    entityToManeuverCityMap: "map<vuint,string>",
+    rotateCoreCityName: "string",
+  },
+}

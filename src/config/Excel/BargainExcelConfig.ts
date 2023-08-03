@@ -1,0 +1,30 @@
+import { ConfigDefault } from "../"
+
+export const BargainExcelConfig: ConfigDefault = {
+  attribute: ["excel"],
+  baseClass: null,
+  Fields: {
+    quest_id: "vuint",
+    id: "vuint",
+    dialog_id: "vuint[]",
+    expected_value: "vuint[]",
+    space: "vuint",
+    success_talk_id: "vuint[]",
+    fail_talk_id: "vuint",
+    mood_npc_id: "vuint",
+    mood_upper_limit: "vuint",
+    random_mood: "vuint[]",
+    mood_alert_limit: "vuint",
+    mood_low_limit: "vint",
+    mood_low_limit_textTextMapHash: "vuint",
+    single_fail_mood_deduction: "vuint",
+    single_fail_talk_id: "vuint[]",
+    delete_item: "bool",
+    item_id: "vuint",
+    title_textTextMapHash: "vuint",
+    afford_textTextMapHash: "vuint",
+    storage_textTextMapHash: "vuint",
+    mood_hint_textTextMapHash: "vuint",
+    mood_desc_textTextMapHash: "vuint",
+  },
+}

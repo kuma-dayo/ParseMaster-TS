@@ -1,0 +1,30 @@
+import { ConfigDefault } from "../"
+
+export const ConfigCombatProperty: ConfigDefault = {
+  attribute: [],
+  baseClass: null,
+  Fields: {
+    endureType: "EndureType",
+    useCreatorProperty: "bool",
+    useCreatorPropertyPartly: "CombatPropertyIndex[]",
+    useCreatorBuffedProperty: "bool",
+    useAbilityProperty: "bool",
+    HP: "float",
+    attack: "float",
+    defense: "float",
+    level: "vint",
+    levelOption: "LevelOption",
+    weight: "float",
+    endureShake: "float",
+    isInvincible: "bool",
+    isLockHP: "bool",
+    isLockHPNoHeal: "bool",
+    isNoHeal: "bool",
+    isGhostToAllied: "bool",
+    isGhostToEnemy: "bool",
+    canTriggerBullet: "bool",
+    denyElementStick: "bool",
+    ignorePurgeRate: "bool",
+    ignoreDamageToSelf: "bool",
+  },
+}

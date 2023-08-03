@@ -1,0 +1,33 @@
+import { ConfigDefault } from "../"
+
+export const ConfigGadgetMisc: ConfigDefault = {
+  attribute: [],
+  baseClass: null,
+  Fields: {
+    chest: "ConfigChest",
+    gear: "ConfigGear",
+    forceField: "ConfigConstForceField",
+    crystal: "ConfigCrystal",
+    seal: "ConfigSeal",
+    pickup: "ConfigPickup",
+    windSeed: "ConfigWindSeed",
+    cannon: "ConfigCannon",
+    gadgetConsole: "ConfigGadgetConsole",
+    xmLens: "ConfigXmLens",
+    autoDoor: "ConfigAutoDool",
+    customGadgetNode: "ConfigCustomGadgetNode",
+    customGadgetDither: "ConfigCustomGadgetDither",
+    customGadgetColliderControl: "ConfigCustomGadgetColliderControl",
+    escapeEffect: "string",
+    guidePoint: "bool",
+    isUIPoint: "bool",
+    guidePointManagedByIndicator: "bool",
+    guidePointType: "TargetIndicatorType",
+    targetIndicatorYOffset: "float",
+    guidePointConfig: "ConfigGuidePoint",
+    bool: "public",
+    hasAvatarFallOnGroundRoll: "bool",
+    needTurnGrey: "bool",
+    disableDuration: "float",
+  },
+}

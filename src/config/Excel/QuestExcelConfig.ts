@@ -1,0 +1,30 @@
+import { ConfigDefault } from "../"
+
+export const QuestExcelConfig: ConfigDefault = {
+  attribute: ["excel"],
+  baseClass: null,
+  Fields: {
+    subId: "vuint",
+    mainId: "vuint",
+    order: "vint",
+    subIdSet: "vuint",
+    isMpBlock: "bool",
+    descTextMapHash: "vuint",
+    stepDescTextMapHash: "vuint",
+    guideTipsTextMapHash: "vuint",
+    showType: "QuestShowType",
+    banType: "BanGroupType",
+    _HACK__10: "__HACK_",
+    _HACK__11: "__HACK_",
+    _HACK__12: "__HACK_",
+    _HACK__13: "__HACK_",
+    _HACK__14: "__HACK_",
+    _HACK__15: "__HACK_",
+    guide: "QuestGuide",
+    showGuide: "ShowQuestGuideType",
+    guideHint: "QuestGuideHintEx",
+    _HACK__19: "__HACK_",
+    _HACK__20: "__HACK_",
+    failParentShow: "QuestShowType",
+  },
+}

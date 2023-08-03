@@ -1,0 +1,26 @@
+import { EnumDefault } from "."
+
+enum types {
+  TREE_TYPE_BIRCH = 1,
+  TREE_TYPE_MAPLE = 2,
+  TREE_TYPE_PINE = 3,
+  TREE_TYPE_POPULUS_EUPHRATICA = 4,
+  TREE_TYPE_BAMBOO = 5,
+  TREE_TYPE_ENERGY_WOOD = 6,
+  TREE_TYPE_CYPRESS = 7,
+  TREE_TYPE_FIRTREE = 8,
+  TREE_TYPE_CERASUS = 9,
+  TREE_TYPE_ACER = 10,
+  TREE_TYPE_CRYPTOMERIA = 11,
+  TREE_TYPE_OTOGI = 12,
+  TREE_TYPE_FICUS = 13,
+  TREE_TYPE_MELIA = 14,
+  TREE_TYPE_MARATTIA = 15,
+  TREE_TYPE_TAMARIX = 16,
+  TREE_TYPE_SYLVESTRIS = 17,
+}
+
+export const TreeType: EnumDefault = {
+  __signed: true,
+  types: types,
+}

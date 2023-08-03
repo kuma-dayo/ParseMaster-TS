@@ -1,0 +1,31 @@
+import { ConfigDefault } from "../"
+
+export const AvatarCostumeExcelConfig: ConfigDefault = {
+  attribute: ["excel"],
+  baseClass: null,
+  Fields: {
+    skinId: "vuint",
+    indexID: "vuint",
+    nameTextMapHash: "vuint",
+    descTextMapHash: "vuint",
+    itemId: "vuint",
+    characterId: "vuint",
+    json_name: "string",
+    prefab_pathHash: "vuint",
+    prefab_remote_pathHash: "vuint",
+    prefab_npc_pathHash: "vuint",
+    animatorConfigPathHash: "vuint",
+    prefab_manekin_pathHash: "vuint",
+    controller_pathHash: "vuint",
+    controller_remote_pathHash: "vuint",
+    isDefault: "bool",
+    isDefaultUnlock: "bool",
+    quality: "vuint",
+    hide: "bool",
+    frontIconName: "string",
+    sideIconName: "string",
+    imageNameHash: "vuint",
+    domesticHideInArtPreview: "bool",
+    overseaHideInArtPreview: "bool",
+  },
+}

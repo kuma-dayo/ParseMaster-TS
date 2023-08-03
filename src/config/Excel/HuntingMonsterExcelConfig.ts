@@ -1,0 +1,33 @@
+import { ConfigDefault } from "../"
+
+export const HuntingMonsterExcelConfig: ConfigDefault = {
+  attribute: ["excel"],
+  baseClass: null,
+  Fields: {
+    configId: "vuint",
+    monsterId: "vuint",
+    associatedMonsterGroupId: "vuint",
+    huntingFinishType: "HuntingMonsterFinishType",
+    affix: "vuint[]",
+    abilityGroup: "string",
+    createPosType: "HuntingMonsterCreatePosType",
+    level: "vuint",
+    reviseLevelId: "vuint",
+    cityList: "vuint[]",
+    difficulty: "HuntingOfferDifficultyType",
+    limitTime: "vuint",
+    searchPointNum: "vuint",
+    refreshCond: "HuntingRefreshCond[]",
+    initialPose: "vuint",
+    clueTextIdList: "vuint[]",
+    newsTextTextMapHash: "vuint",
+    traitTextTextMapHash: "vuint",
+    mechanismTitle1TextMapHash: "vuint",
+    mechanismDesc1TextMapHash: "vuint",
+    mechanismTitle2TextMapHash: "vuint",
+    mechanismDesc2TextMapHash: "vuint",
+    suiteId: "vuint[]",
+    isDisableWandering: "bool",
+    routeId: "vuint",
+  },
+}

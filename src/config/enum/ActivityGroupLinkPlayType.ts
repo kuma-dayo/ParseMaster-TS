@@ -1,0 +1,22 @@
+import { EnumDefault } from "."
+
+enum types {
+  DEFAULT = 0,
+  WINTER_CAMP_RACE = 1,
+  WINTER_CAMP_EXPLORE = 2,
+  WINTER_CAMP_BATTLE = 3,
+  LANTERN_RITE_SALVAGE_PREVENT = 4,
+  LANTERN_RITE_SALVAGE_ESCORT = 5,
+  LANTERN_RITE_SALVAGE_SEA = 6,
+  LANTERN_RITE_SALVAGE_LAND = 7,
+  LANTERN_RITE_SALVAGE_BOSS = 8,
+  MICHIAE_MATSURI_DARK_CHALLENGE = 9,
+  SUMMER_TIME_V2_BOAT = 10,
+  GRAVEN_RACE = 11,
+  LAN_V3_RACE = 12,
+}
+
+export const ActivityGroupLinkPlayType: EnumDefault = {
+  __signed: true,
+  types: types,
+}

@@ -1,0 +1,30 @@
+import { ConfigDefault } from "../"
+
+export const DiePatternSwitchMixin: ConfigDefault = {
+  attribute: [],
+  baseClass: "ConfigAbilityMixin",
+  Fields: {
+    priority: "DiePatternSwitchMixinPriority",
+    hasAnimatorDie: "bool",
+    muteAllShaderDieEff: "bool",
+    fallWhenAirDie: "bool",
+    dieEndTime: "float",
+    dieForceDisappearTime: "float",
+    dieDisappearEffect: "string",
+    dieDisappearEffectDelay: "float",
+    dieShaderData: "E_ShaderData",
+    dieShaderEnableDurationTime: "float",
+    dieShaderDisableDurationTime: "float",
+    dieModelFadeDelay: "float",
+    ragDollDieEndTimeDelay: "float",
+    startDieEndAtOnce: "bool",
+    notSendDieTrigger: "bool",
+    ignoreElementDie: "bool",
+    muteHitBox: "bool",
+    dieDenyLockOn: "bool",
+    dieIsGhostToEnemy: "bool",
+    dieIgnoreTriggerBullet: "bool",
+    muteBillboard: "bool",
+    mutePushCollider: "bool",
+  },
+}

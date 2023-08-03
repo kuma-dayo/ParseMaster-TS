@@ -1,0 +1,31 @@
+import { ConfigDefault } from "../"
+
+export const ConfigCameraMoveInterAction: ConfigDefault = {
+  attribute: [],
+  baseClass: "ConfigBaseInterAction",
+  Fields: {
+    cameraPosType: "StoryCameraPosType",
+    camPosOffset: "Vector",
+    nearLength: "float",
+    camTargetType: "StoryCameraTargetType",
+    camForwardTargetOffset: "Vector",
+    needElev: "bool",
+    camFov: "float",
+    camDutch: "float",
+    lerpRatio: "float",
+    lerpPattern: "vint",
+    cameraBlendType: "TweenEaseType",
+    storyDither: "bool",
+    cutFrameTrans: "ConfigFrameTransition",
+    needZAxisRotate: "bool",
+    rotateAngle: "float",
+    openCameraDither: "bool",
+    targetNpcAlias: "string",
+    keepCameraPos: "bool",
+    useDurationWhenExitFocus: "bool",
+    closeTreeLeafDither: "bool",
+    multiTargetNpcAliasArray: "string[]",
+    closeCameraDisplacement: "bool",
+    vegInteractType: "VegetationInteractType",
+  },
+}
