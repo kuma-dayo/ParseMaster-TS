@@ -1,6 +1,7 @@
 import { BinOutBitMask, ExcelBitMask } from "./bitMask"
 import * as Config from "./config"
-import * as ConfigEnum from "./config/enum"
+import * as ConfigEnum from "./config/Enum"
+import * as TypeIndex from "./config/TypeIndex"
 import DeReader from "./deReader"
 import { FileType } from "./FileType"
 import PMLogger from "./logger"
@@ -11,7 +12,7 @@ export default class Parser {
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   constructor() {}
 
-  parseFile(filename: string, classname: string, mode: FileType, derivation: boolean) {
+  async parseFile(filename: string, classname: string, mode: FileType, derivation: boolean) {
     const reader = new DeReader(filename)
     const multiple = mode == FileType.Single
     if (multiple) return ""
@@ -31,12 +32,22 @@ export default class Parser {
 
     const items: string[] = (() => {
       switch (mode) {
+        case FileType.ListDictionary:
+          return [...Array(length)].map((_, i) => `{${this.parseDictionary(reader, "string", classname)}}}`)
+        case FileType.List:
+          return [...Array(length)].map((_, i) => `{${this.parseClass(classname, reader, derivation)}}`)
+        case FileType.Dictionary:
+          return [this.parseDictionary(reader, "string", classname)]
+        case FileType.DictionaryList:
+          return [this.parseDictionary(reader, "string", `${classname}[]`)]
+        case FileType.DictionaryVuit:
+          return [this.parseDictionary(reader, "vuint", classname)]
+        case FileType.DictionaryVuitVuit:
+          return [this.parseDictionary(reader, "vuint", "vuint")]
         case FileType.Packed:
           return [...Array(length)].map((_, i) => `{${this.parseClassInt(classname, reader)}}`)
-
         case FileType.TextMap:
           return [this.parseTextMap(reader)]
-
         default:
           throw new Error(`Invalid mode ${mode}`)
       }
@@ -66,19 +77,47 @@ export default class Parser {
     return `{${items.join(",")}}`
   }
 
+  parseDictionary(reader: DeReader, keyType: string, valueType: string) {
+    const size = reader.readVarUInt()
+    logger.debug(`Dict size: ${size}`)
+
+    const items: string[] = []
+    for (let i = 0n; i < size; i++) {
+      let key = this.parseFieldType(keyType, reader)
+      logger.debug(`Parsing key ${key} with type ${valueType}`)
+
+      if (!key.includes('"')) {
+        key = `"${key}"`
+      }
+
+      items.push(`${key}: ${this.parseFieldType(valueType, reader)}`)
+    }
+    return `{${items.join(",")}}`
+  }
   parseClass(className: string, reader: DeReader, derivation: boolean) {
-    let output: string[]
-    const derivedClass: string = null
+    const output: string[] = []
+    let derivedClass: string = null
     let rootClassname = className
 
     if (derivation && this.hasDerivedClasses(className)) {
       rootClassname = this.getBasestBase(className)
 
       let classId = reader.readVarUInt()
+
+      const typeIndex = TypeIndex.get(className)
+      const derivedClassName = typeIndex[classId.toString()]
+
+      if (!derivedClassName) throw new Error(`Derived class for ${className} (id ${classId}) not found!`)
+      else {
+        derivedClass = derivedClassName
+        logger.debug(`Deriving class ${classId} (${derivedClass})`)
+      }
     }
     if (!derivedClass) {
       rootClassname = this.getBasestBase(className)
-      output = this.parseClassInt(className, reader, rootClassname)
+      output.push(...this.parseClassInt(className, reader, rootClassname))
+    } else {
+      output.push(...this.parseClassInt(derivedClass, reader, rootClassname))
     }
 
     return `{${output.join(",")}}`
