@@ -12,7 +12,7 @@ export default class Parser {
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   constructor() {}
 
-  async parseFile(filename: string, classname: string, mode: FileType, derivation: boolean) {
+  parseFile(filename: string, classname: string, mode: FileType, derivation: boolean) {
     const reader = new DeReader(filename)
     const multiple = mode == FileType.Single
     if (multiple) return ""

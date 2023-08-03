@@ -44,7 +44,7 @@ async function parse(files: string[]): Promise<void> {
         const { className, mode, derivation } = ConfigResolver.resolve(filePath)
         logger.info(`parsing mode: ${FileType[mode]} file: ${fileName}`)
         const output = JSONbig.stringify(
-          JSONbig.parse(await parser.parseFile(filePath, className, mode, derivation)),
+          JSONbig.parse(parser.parseFile(filePath, className, mode, derivation)),
           null,
           2
         )
