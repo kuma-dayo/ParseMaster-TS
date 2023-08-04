@@ -1,4 +1,4 @@
-import { ConfigDefault } from "../"
+import { ConfigDefault } from ".."
 
 export const SignInCondConfig: ConfigDefault = {
   attribute: ["excel", "nozig"],

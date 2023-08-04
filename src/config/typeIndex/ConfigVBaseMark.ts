@@ -1,4 +1,4 @@
-import { TypeIndexDefault } from "./"
+import { TypeIndexDefault } from "."
 
 export const ConfigVBaseMark: TypeIndexDefault = {
   "0": "ConfigVBaseMark",

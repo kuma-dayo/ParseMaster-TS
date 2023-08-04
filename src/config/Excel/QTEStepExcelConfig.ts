@@ -1,4 +1,4 @@
-import { ConfigDefault } from "../"
+import { ConfigDefault } from ".."
 
 export const QTEStepExcelConfig: ConfigDefault = {
   attribute: ["excel"],

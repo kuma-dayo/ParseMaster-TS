@@ -1,4 +1,4 @@
-import { ConfigDefault } from "../"
+import { ConfigDefault } from ".."
 
 export const BlessingPicUpConfig: ConfigDefault = {
   attribute: ["excel", "nozig"],

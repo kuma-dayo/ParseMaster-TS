@@ -1,4 +1,4 @@
-import { TypeIndexDefault } from "./"
+import { TypeIndexDefault } from "."
 
 export const ConfigJudgeNodeBase: TypeIndexDefault = {
   "0": "ConfigJudgeNodeBase",

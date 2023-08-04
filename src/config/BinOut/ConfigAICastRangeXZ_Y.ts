@@ -1,4 +1,4 @@
-import { ConfigDefault } from "../"
+import { ConfigDefault } from ".."
 
 export const ConfigAICastRangeXZ_Y: ConfigDefault = {
   attribute: [],

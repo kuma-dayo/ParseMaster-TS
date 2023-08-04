@@ -1,4 +1,4 @@
-import { TypeIndexDefault } from "./"
+import { TypeIndexDefault } from "."
 
 export const ConfigBeHitBlendShake: TypeIndexDefault = {
   "0": "ConfigBeHitBlendShake",

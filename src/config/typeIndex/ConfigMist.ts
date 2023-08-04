@@ -1,4 +1,4 @@
-import { TypeIndexDefault } from "./"
+import { TypeIndexDefault } from "."
 
 export const ConfigMist: TypeIndexDefault = {
   "0": "ConfigMist",

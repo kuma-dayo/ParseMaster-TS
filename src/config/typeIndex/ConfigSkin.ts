@@ -1,4 +1,4 @@
-import { TypeIndexDefault } from "./"
+import { TypeIndexDefault } from "."
 
 export const ConfigSkin: TypeIndexDefault = {
   "0": "ConfigSkin",

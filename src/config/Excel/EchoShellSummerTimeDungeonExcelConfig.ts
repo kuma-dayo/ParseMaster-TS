@@ -1,4 +1,4 @@
-import { ConfigDefault } from "../"
+import { ConfigDefault } from ".."
 
 export const EchoShellSummerTimeDungeonExcelConfig: ConfigDefault = {
   attribute: ["excel"],

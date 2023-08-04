@@ -1,4 +1,4 @@
-import { ConfigDefault } from "../"
+import { ConfigDefault } from ".."
 
 export const DungeonEntry: ConfigDefault = {
   attribute: [],
@@ -9,6 +9,7 @@ export const DungeonEntry: ConfigDefault = {
     size: "Vector",
     worktopGroupId: "vuint",
     titleTextID: "string",
+    Unk3800_JKECMMKHNPG: "string",
     showLevel: "vint",
     dungeonRandomList: "vuint[]",
     dungeonEntryType: "DungeonEntryType",
@@ -16,5 +17,6 @@ export const DungeonEntry: ConfigDefault = {
     fireFieldEvent: "bool",
     dungeonRosterList: "vuint[]",
     removeEntityIfLocked: "bool",
+    Unk3800_POHNCMDFMII: "Unk3800_INAINLLFNFH",
   },
 }

@@ -1,4 +1,4 @@
-import { TypeIndexDefault } from "./"
+import { TypeIndexDefault } from "."
 
 export const ConfigSpecialCamera: TypeIndexDefault = {
   "0": "ConfigSpecialCamera",

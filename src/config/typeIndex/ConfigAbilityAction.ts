@@ -1,4 +1,4 @@
-import { TypeIndexDefault } from "./"
+import { TypeIndexDefault } from "."
 
 export const ConfigAbilityAction: TypeIndexDefault = {
   "0": "ConfigAbilityAction",

@@ -1,4 +1,4 @@
-import { TypeIndexDefault } from "./"
+import { TypeIndexDefault } from "."
 
 export const ConfigMove: TypeIndexDefault = {
   "0": "ConfigMove",

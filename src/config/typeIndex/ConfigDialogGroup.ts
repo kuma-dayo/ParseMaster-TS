@@ -1,4 +1,4 @@
-import { TypeIndexDefault } from "./"
+import { TypeIndexDefault } from "."
 
 export const ConfigDialogGroup: TypeIndexDefault = {
   "0": "ConfigDialogGroup",

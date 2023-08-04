@@ -1,4 +1,4 @@
-import { ConfigDefault } from "../"
+import { ConfigDefault } from ".."
 
 export const ConfigAnimationBulletMove: ConfigDefault = {
   attribute: [],

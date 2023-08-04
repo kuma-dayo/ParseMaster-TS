@@ -1,4 +1,4 @@
-import { TypeIndexDefault } from "./"
+import { TypeIndexDefault } from "."
 
 export const ConfigCameraSplineBaseTarget: TypeIndexDefault = {
   "0": "ConfigCameraSplineBaseTarget",

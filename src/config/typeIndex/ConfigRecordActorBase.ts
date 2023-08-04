@@ -1,4 +1,4 @@
-import { TypeIndexDefault } from "./"
+import { TypeIndexDefault } from "."
 
 export const ConfigRecordActorBase: TypeIndexDefault = {
   "0": "ConfigRecordActorBase",

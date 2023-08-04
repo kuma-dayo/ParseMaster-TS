@@ -1,4 +1,4 @@
-import { TypeIndexDefault } from "./"
+import { TypeIndexDefault } from "."
 
 export const ConfigEntityAudio: TypeIndexDefault = {
   "0": "ConfigEntityAudio",

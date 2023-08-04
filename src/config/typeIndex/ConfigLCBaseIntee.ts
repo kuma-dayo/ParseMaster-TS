@@ -1,4 +1,4 @@
-import { TypeIndexDefault } from "./"
+import { TypeIndexDefault } from "."
 
 export const ConfigLCBaseIntee: TypeIndexDefault = {
   "0": "ConfigLCBaseIntee",

@@ -1,4 +1,4 @@
-import { TypeIndexDefault } from "./"
+import { TypeIndexDefault } from "."
 
 export const ConfigAudioEventCullingRuleBase: TypeIndexDefault = {
   "0": "ConfigAudioEventCullingRuleBase",

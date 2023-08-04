@@ -1,4 +1,4 @@
-import { TypeIndexDefault } from "./"
+import { TypeIndexDefault } from "."
 
 export const ContextCondition: TypeIndexDefault = {
   "0": "ContextCondition",

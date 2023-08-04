@@ -1,4 +1,4 @@
-import { ConfigDefault } from "../"
+import { ConfigDefault } from ".."
 
 export const EraseBrickActivity_CreateBrick: ConfigDefault = {
   attribute: [],

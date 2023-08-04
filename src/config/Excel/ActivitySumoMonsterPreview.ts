@@ -1,4 +1,4 @@
-import { ConfigDefault } from "../"
+import { ConfigDefault } from ".."
 
 export const ActivitySumoMonsterPreview: ConfigDefault = {
   attribute: ["excel", "nozig"],

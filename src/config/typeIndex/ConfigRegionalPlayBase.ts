@@ -1,4 +1,4 @@
-import { TypeIndexDefault } from "./"
+import { TypeIndexDefault } from "."
 
 export const ConfigRegionalPlayBase: TypeIndexDefault = {
   "0": "ConfigRegionalPlayBase",

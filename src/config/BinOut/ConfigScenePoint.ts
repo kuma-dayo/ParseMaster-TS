@@ -1,4 +1,4 @@
-import { ConfigDefault } from "../"
+import { ConfigDefault } from ".."
 
 export const ConfigScenePoint: ConfigDefault = {
   attribute: [],
@@ -15,5 +15,7 @@ export const ConfigScenePoint: ConfigDefault = {
     alias: "string",
     groupLimit: "bool",
     isModelHidden: "bool",
+    Unk3800_NAFMBFFBBGF: "string",
+    Unk3800_MJILKCFPCEN: "string",
   },
 }

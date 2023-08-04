@@ -1,4 +1,4 @@
-import { ConfigDefault } from "../"
+import { ConfigDefault } from ".."
 
 export const SceneTagCond: ConfigDefault = {
   attribute: ["excel", "nozig"],

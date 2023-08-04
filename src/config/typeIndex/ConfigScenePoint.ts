@@ -1,4 +1,4 @@
-import { TypeIndexDefault } from "./"
+import { TypeIndexDefault } from "."
 
 export const ConfigScenePoint: TypeIndexDefault = {
   "0": "ConfigScenePoint",

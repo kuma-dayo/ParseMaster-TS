@@ -1,4 +1,4 @@
-import { TypeIndexDefault } from "./"
+import { TypeIndexDefault } from "."
 
 export const ConfigMoveCorrection: TypeIndexDefault = {
   "0": "ConfigMoveCorrection",

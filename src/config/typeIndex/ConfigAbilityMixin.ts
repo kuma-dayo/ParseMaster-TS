@@ -1,4 +1,4 @@
-import { TypeIndexDefault } from "./"
+import { TypeIndexDefault } from "."
 
 export const ConfigAbilityMixin: TypeIndexDefault = {
   "0": "ConfigAbilityMixin",

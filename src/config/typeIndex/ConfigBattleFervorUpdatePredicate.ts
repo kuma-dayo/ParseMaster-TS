@@ -1,4 +1,4 @@
-import { TypeIndexDefault } from "./"
+import { TypeIndexDefault } from "."
 
 export const ConfigBattleFervorUpdatePredicate: TypeIndexDefault = {
   "0": "ConfigBattleFervorUpdatePredicate",

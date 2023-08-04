@@ -1,4 +1,4 @@
-import { TypeIndexDefault } from "./"
+import { TypeIndexDefault } from "."
 
 export const ConfigBaseWidget: TypeIndexDefault = {
   "0": "ConfigBaseWidget",

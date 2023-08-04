@@ -1,4 +1,4 @@
-import { ConfigDefault } from "../"
+import { ConfigDefault } from ".."
 
 export const PropValConfig: ConfigDefault = {
   attribute: ["excel", "nozig"],

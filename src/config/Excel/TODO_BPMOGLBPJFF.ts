@@ -1,4 +1,4 @@
-import { ConfigDefault } from "../"
+import { ConfigDefault } from ".."
 
 export const TODO_BPMOGLBPJFF: ConfigDefault = {
   attribute: ["excel", "nozig"],

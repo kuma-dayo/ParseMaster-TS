@@ -1,4 +1,4 @@
-import { ConfigDefault } from "../"
+import { ConfigDefault } from ".."
 
 export const LevelTagGroup: ConfigDefault = {
   attribute: ["excel", "nozig"],

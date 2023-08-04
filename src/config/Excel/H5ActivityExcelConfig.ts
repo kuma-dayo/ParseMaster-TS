@@ -1,4 +1,4 @@
-import { ConfigDefault } from "../"
+import { ConfigDefault } from ".."
 
 export const H5ActivityExcelConfig: ConfigDefault = {
   attribute: ["excel"],

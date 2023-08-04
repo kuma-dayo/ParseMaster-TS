@@ -1,4 +1,4 @@
-import { TypeIndexDefault } from "./"
+import { TypeIndexDefault } from "."
 
 export const ConfigActionPointSelectType: TypeIndexDefault = {
   "0": "ConfigActionPointSelectType",

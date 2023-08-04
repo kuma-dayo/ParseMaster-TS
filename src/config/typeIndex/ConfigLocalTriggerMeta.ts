@@ -1,4 +1,4 @@
-import { TypeIndexDefault } from "./"
+import { TypeIndexDefault } from "."
 
 export const ConfigLocalTriggerMeta: TypeIndexDefault = {
   "0": "ConfigLocalTriggerMeta",

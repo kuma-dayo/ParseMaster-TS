@@ -1,4 +1,4 @@
-import { TypeIndexDefault } from "./"
+import { TypeIndexDefault } from "."
 
 export const AudioSettingSlider: TypeIndexDefault = {
   "0": "AudioSettingSlider",

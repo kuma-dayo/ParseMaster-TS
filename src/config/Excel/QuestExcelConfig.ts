@@ -1,4 +1,4 @@
-import { ConfigDefault } from "../"
+import { ConfigDefault } from ".."
 
 export const QuestExcelConfig: ConfigDefault = {
   attribute: ["excel"],

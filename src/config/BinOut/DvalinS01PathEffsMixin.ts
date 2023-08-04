@@ -1,4 +1,4 @@
-import { ConfigDefault } from "../"
+import { ConfigDefault } from ".."
 
 export const DvalinS01PathEffsMixin: ConfigDefault = {
   attribute: [],

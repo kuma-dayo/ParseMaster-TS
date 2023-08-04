@@ -1,4 +1,4 @@
-import { ConfigDefault } from "../"
+import { ConfigDefault } from ".."
 
 export const HomeworldModuleExcelConfig: ConfigDefault = {
   attribute: ["excel"],

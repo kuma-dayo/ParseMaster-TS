@@ -1,4 +1,4 @@
-import { TypeIndexDefault } from "./"
+import { TypeIndexDefault } from "."
 
 export const SelectTargets: TypeIndexDefault = {
   "0": "SelectTargets",

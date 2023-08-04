@@ -1,4 +1,4 @@
-import { TypeIndexDefault } from "./"
+import { TypeIndexDefault } from "."
 
 export const ConfigPerfItemOptionArrayInfoBase: TypeIndexDefault = {
   "0": "ConfigPerfItemOptionArrayInfoBase",

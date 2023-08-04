@@ -1,4 +1,4 @@
-import { ConfigDefault } from "../"
+import { ConfigDefault } from ".."
 
 export const SceneTransPoint: ConfigDefault = {
   attribute: [],
@@ -13,5 +13,6 @@ export const SceneTransPoint: ConfigDefault = {
     showOnLockedArea: "bool",
     disableInteraction: "bool",
     exploreRatio: "vuint",
+    Unk3800_JDMCEKMLFCG: "string",
   },
 }

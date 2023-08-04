@@ -1,4 +1,4 @@
-import { ConfigDefault } from "../"
+import { ConfigDefault } from ".."
 
 export const RogueDiaryCardWeightExcelConfig: ConfigDefault = {
   attribute: ["excel"],

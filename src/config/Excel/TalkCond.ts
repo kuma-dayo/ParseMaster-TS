@@ -1,4 +1,4 @@
-import { ConfigDefault } from "../"
+import { ConfigDefault } from ".."
 
 export const TalkCond: ConfigDefault = {
   attribute: ["excel", "nozig"],

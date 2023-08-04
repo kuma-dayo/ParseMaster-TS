@@ -1,4 +1,4 @@
-import { TypeIndexDefault } from "./"
+import { TypeIndexDefault } from "."
 
 export const TemplateParam: TypeIndexDefault = {
   "0": "TemplateParam",
