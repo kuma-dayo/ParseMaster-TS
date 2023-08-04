@@ -5,7 +5,7 @@ export default class PMLogger {
   static option: LoggerOptions = {
     language: "en",
     colors: true,
-    debug: true,
+    debug: false,
     info: true,
     warning: true,
     error: true,

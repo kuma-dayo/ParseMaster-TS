@@ -9,13 +9,24 @@ import PMLogger from "./logger"
 const logger = PMLogger.getInstance()
 
 export default class Parser {
-  // eslint-disable-next-line @typescript-eslint/no-empty-function
-  constructor() {}
+  private readonly parseRpn: boolean
+  private readonly baseMap: string[]
+  constructor(parseRpn: boolean) {
+    this.parseRpn = parseRpn
+    this.baseMap = []
+
+    //TODO: Delete this HACK code
+    Object.entries(Config).forEach(([key, value]) => {
+      if (value["baseClass"] && !this.baseMap.includes(value["baseClass"])) {
+        this.baseMap.push(value["baseClass"])
+      }
+    })
+  }
 
   parseFile(filename: string, classname: string, mode: FileType, derivation: boolean) {
     const reader = new DeReader(filename)
-    const multiple = mode == FileType.Single
-    if (multiple) return ""
+    const multiple = mode != FileType.Single
+    if (!multiple) return this.parseClass(classname, reader, derivation)
 
     const length = (() => {
       switch (mode) {
@@ -45,7 +56,9 @@ export default class Parser {
         case FileType.DictionaryVuitVuit:
           return [this.parseDictionary(reader, "vuint", "vuint")]
         case FileType.Packed:
-          return [...Array(length)].map((_, i) => `{${this.parseClassInt(classname, reader)}}`)
+          return [...Array(length)].map(
+            (_, i) => `{${this.parseClassInt(classname, reader, Config.get(classname).baseClass)}}`
+          )
         case FileType.TextMap:
           return [this.parseTextMap(reader)]
         default:
@@ -104,15 +117,14 @@ export default class Parser {
 
       let classId = reader.readVarUInt()
 
-      const typeIndex = TypeIndex.get(className)
-      const derivedClassName = typeIndex[classId.toString()]
+      const typeIndex = TypeIndex.get(rootClassname)
+      derivedClass = typeIndex[classId.toString()]
 
-      if (!derivedClassName) throw new Error(`Derived class for ${className} (id ${classId}) not found!`)
-      else {
-        derivedClass = derivedClassName
-        logger.debug(`Deriving class ${classId} (${derivedClass})`)
-      }
+      if (!derivedClass) throw new Error(`Derived class for ${className} (id ${classId}) not found!`)
+
+      logger.debug(`Deriving class ${classId} (${derivedClass})`)
     }
+
     if (!derivedClass) {
       rootClassname = this.getBasestBase(className)
       output.push(...this.parseClassInt(className, reader, rootClassname))
@@ -124,11 +136,11 @@ export default class Parser {
   }
 
   hasDerivedClasses(className: string): boolean {
-    return Config.get(className).baseClass != null
+    return Object.values(this.baseMap).includes(className)
   }
   getBasestBase(className: string) {
     let baseClass = className
-    while (Config.get(baseClass)) {
+    while (Config.get(baseClass).baseClass) {
       baseClass = Config.get(baseClass).baseClass
     }
 
@@ -146,7 +158,7 @@ export default class Parser {
 
     const mergedFields: { [key: string]: string } = fields
 
-    for (const key in baseconfig.Fields) {
+    for (const key in Object.keys(baseconfig.Fields)) {
       if (!fields[key]) {
         mergedFields[key] = baseconfig.Fields[key]
       }
@@ -157,12 +169,14 @@ export default class Parser {
   parseClassInt(className: string, reader: DeReader, baseClassName?: string) {
     const output: string[] = []
     const config = Config.get(className)
-    // Config[]
     if (!config) throw new Error(`Class ${className} not found!`)
 
-    const hasBase = !!config.baseClass || (!!baseClassName && className.includes(baseClassName))
+    const hasBase = !!baseClassName && !className.includes(baseClassName)
     const isExcel = config.attribute.includes("excel")
 
+    if (hasBase && !isExcel && config.baseClass) {
+      output.push(...this.parseClassInt(config.baseClass, reader, baseClassName))
+    }
     if (hasBase && isExcel) {
       config.Fields = this.mergeFields(config.Fields, className)
     }
@@ -242,10 +256,151 @@ export default class Parser {
       case fieldType == "double":
         const f64Value = reader.readF64()
         return f64Value.toString() //TODO: FormatFloat
+      case fieldType == "DynamicFloat":
+        return this.readDynamicFloat(reader)
+      case fieldType == "DynamicInt":
+        return this.readDynamicInt(reader)
+      case fieldType == "DynamicArgument":
+        return this.readDynamicArgument(reader)
+      case fieldType == "DynamicString":
+        const isDynamic = reader.readBool()
+        if (isDynamic) {
+        }
+
+        const dynamicStringValue = reader.readString()
+        return `"${dynamicStringValue}"`
+
       case !!Config[fieldType]:
         return this.parseClass(fieldType, reader, true)
+      case fieldType.startsWith("map<"):
+        const typeArgs = fieldType.substring(fieldType.indexOf("<") + 1, fieldType.lastIndexOf(">")).split(",")
+        const keyType = typeArgs[0]
+        let valueType = typeArgs[1]
+
+        if (typeArgs.length == 3) {
+          valueType += `,${typeArgs[2]}`
+        }
+
+        return this.parseDictionary(reader, keyType, valueType)
+
       default:
         throw new Error(`Type ${fieldType} is not supported`)
     }
+  }
+  private readDynamicArgument(reader: DeReader) {
+    // Credit goes to Raz
+    let typeIndex = Number(reader.readVarUInt())
+
+    return (() => {
+      switch (typeIndex) {
+        case 1:
+          return reader.readS8().toString()
+        case 2:
+          return reader.readU8().toString()
+        case 3:
+          return reader.readS16().toString()
+        case 4:
+          return reader.readU16().toString()
+        case 5:
+          return reader.readS32().toString()
+        case 6:
+          return reader.readU32().toString()
+        case 7:
+          return reader.readF32().toString() // TODO: FormatFloat
+        case 8:
+          return reader.readF64().toString() // TODO: FormatFloat
+        case 9:
+          return reader.readBool().toString().toLowerCase()
+        case 10:
+          return `"${reader.readString()}"`
+        default:
+          throw new Error(`Unhandled DynamicArgument type ${typeIndex}`)
+      }
+    })()
+  }
+  private readDynamicInt(reader: DeReader) {
+    let isString = reader.readBool()
+    return isString ? `"${reader.readString()}"` : reader.readVarInt().toString()
+  }
+
+  private readDynamicFloat(reader: DeReader) {
+    const isFormula = reader.readBool()
+
+    if (isFormula) {
+      const count = reader.readVarInt()
+      const components: string[] = []
+
+      for (let i = 0; i < count; i++) {
+        const isOperator = reader.readBool()
+        const op = reader.readVarInt()
+
+        if (isOperator) {
+          if (this.parseRpn) {
+            const s0p = (() => {
+              switch (op) {
+                case 0:
+                  return "+"
+                case 1:
+                  return "-"
+                case 11:
+                  return "*"
+                case 12:
+                  return "/"
+                default:
+                  return op.toString()
+              }
+            })()
+
+            components.push(`${s0p}`)
+          } else {
+            const s0p = (() => {
+              switch (op) {
+                case 0:
+                  return "ADD"
+                case 1:
+                  return "SUB"
+                case 11:
+                  return "MUL"
+                case 12:
+                  return "DIV"
+                default:
+                  return op.toString()
+              }
+            })()
+
+            components.push(`"${s0p}"`)
+          }
+        } else {
+          const isString = reader.readBool()
+          components.push(
+            isString
+              ? this.parseRpn
+                ? `%${reader.readString()}`
+                : `"${reader.readString()}"`
+              : reader.readF32().toString() //tostring(CultureInfo.InvariantCulture)?
+          )
+        }
+      }
+
+      return this.parseRpn ? `"${this.rpnToString(components)}"` : `[${components.join(",")}]`
+    }
+
+    const isString = reader.readBool()
+    return isString ? `"${reader.readString()}"` : reader.readF32().toString() //tostring(CultureInfo.InvariantCulture)?
+  }
+
+  public rpnToString(tokens: string[]): string {
+    const stack: string[] = []
+    for (const token of tokens) {
+      if (token === "+" || token === "-" || token === "*" || token === "/") {
+        const operand2 = stack.pop()
+        const operand1 = stack.pop()
+        const expression = operand1 + token + operand2
+        stack.push(expression)
+      } else {
+        stack.push(token)
+      }
+    }
+    return stack.pop()
   }
 }

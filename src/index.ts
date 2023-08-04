@@ -12,6 +12,8 @@ import Parser from "./parser"
 import { mkdir, writeFile } from "./utils/fileSystem"
 sourceMapSupport.install()
 
+const DisableDynamicFloatParsing = false //TODO: options
+
 const inputFolder = join(cwd(), "Data")
 const outputFolder = join(cwd(), "Json")
 
@@ -21,7 +23,7 @@ let suc = 0
 let fail = 0
 let skip = 0
 
-const parser = new Parser()
+const parser = new Parser(!DisableDynamicFloatParsing)
 
 ;(async () => {
   const start = performance.now()
