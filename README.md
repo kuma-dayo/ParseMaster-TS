@@ -1,5 +1,6 @@
 # ParseMaster-TS
 
-Based on ParseMaster created by 14eyes
+definitions: Version 2.8
+All data can be dumped except InterContainer_Q46503
 
-TODO: Port all feature implemented in ParseMaster
+Based on ParseMaster created by 14eyes

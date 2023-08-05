@@ -31,9 +31,8 @@ export default class Parser {
     const length = (() => {
       switch (mode) {
         case FileType.List:
-          return reader.readVarUInt()
         case FileType.ListDictionary:
-          return reader.readVarUInt()
+          return Number(reader.readVarUInt())
         case FileType.Packed:
           return reader.readVarInt()
         default:
@@ -44,9 +43,9 @@ export default class Parser {
     const items: string[] = (() => {
       switch (mode) {
         case FileType.ListDictionary:
-          return [...Array(length)].map((_, i) => `{${this.parseDictionary(reader, "string", classname)}}}`)
+          return [...Array(length)].map((v, i) => this.parseDictionary(reader, "string", classname))
         case FileType.List:
-          return [...Array(length)].map((_, i) => `{${this.parseClass(classname, reader, derivation)}}`)
+          return [...Array(length)].map((_, i) => this.parseClass(classname, reader, derivation))
         case FileType.Dictionary:
           return [this.parseDictionary(reader, "string", classname)]
         case FileType.DictionaryList:
@@ -132,11 +131,12 @@ export default class Parser {
       output.push(...this.parseClassInt(derivedClass, reader, rootClassname))
     }
 
+    logger.debug(`{${output.join(",")}}`)
     return `{${output.join(",")}}`
   }
 
   hasDerivedClasses(className: string): boolean {
-    return Object.values(this.baseMap).includes(className)
+    return this.baseMap.includes(className)
   }
   getBasestBase(className: string) {
     let baseClass = className
@@ -171,7 +171,7 @@ export default class Parser {
     const config = Config.get(className)
     if (!config) throw new Error(`Class ${className} not found!`)
 
-    const hasBase = !!baseClassName && !className.includes(baseClassName)
+    const hasBase = !!baseClassName && className != baseClassName
     const isExcel = config.attribute.includes("excel")
 
     if (hasBase && !isExcel && config.baseClass) {
@@ -182,6 +182,7 @@ export default class Parser {
     }
 
     const fields = Object.entries(config.Fields)
+
     logger.debug(`Parsing Class ${className} (${fields.length} fields)`)
 
     let j = 0
@@ -332,9 +333,8 @@ export default class Parser {
 
       for (let i = 0; i < count; i++) {
         const isOperator = reader.readBool()
-        const op = reader.readVarInt()
-
         if (isOperator) {
+          const op = reader.readVarInt()
           if (this.parseRpn) {
             const s0p = (() => {
               switch (op) {
@@ -385,8 +385,10 @@ export default class Parser {
       return this.parseRpn ? `"${this.rpnToString(components)}"` : `[${components.join(",")}]`
     }
 
-    const isString = reader.readBool()
-    return isString ? `"${reader.readString()}"` : reader.readF32().toString() //tostring(CultureInfo.InvariantCulture)?
+    {
+      const isString = reader.readBool()
+      return isString ? `"${reader.readString()}"` : reader.readF32().toString() //tostring(CultureInfo.InvariantCulture)?
+    }
   }
 
   public rpnToString(tokens: string[]): string {
