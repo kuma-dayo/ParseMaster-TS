@@ -123,7 +123,7 @@ export default class DeReader {
     const bytes = this.reader.slice(this.position, this.position + len)
     this.position += len
     const str = bytes.toString("utf8")
-    return str.replace(/\\/g, "\\\\").replace(/"/g, '\\"') //HACK
+    return str.replace(/([\\\\"])/g, "\\$1")
   }
 
   public peekByte(): number {

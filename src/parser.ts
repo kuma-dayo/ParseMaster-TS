@@ -10,15 +10,15 @@ const logger = PMLogger.getInstance()
 
 export default class Parser {
   private readonly parseRpn: boolean
-  private readonly baseMap: string[]
+  private readonly baseList: string[]
   constructor(parseRpn: boolean) {
     this.parseRpn = parseRpn
-    this.baseMap = []
+    this.baseList = []
 
     //TODO: Delete this HACK code
     Object.entries(Config).forEach(([key, value]) => {
-      if (value["baseClass"] && !this.baseMap.includes(value["baseClass"])) {
-        this.baseMap.push(value["baseClass"])
+      if (value["baseClass"] && !this.baseList.includes(value["baseClass"])) {
+        this.baseList.push(value["baseClass"])
       }
     })
   }
@@ -73,6 +73,7 @@ export default class Parser {
 
   parseTextMap(reader: DeReader) {
     const items: String[] = []
+
     while (reader.lenToEof() > 0) {
       //idk what is this do not ask me
       const one = Number(reader.readVarUInt())
@@ -136,7 +137,7 @@ export default class Parser {
   }
 
   hasDerivedClasses(className: string): boolean {
-    return this.baseMap.includes(className)
+    return this.baseList.includes(className)
   }
   getBasestBase(className: string) {
     let baseClass = className
@@ -253,10 +254,10 @@ export default class Parser {
         return boolValue.toString()
       case fieldType == "float":
         const f32Value = reader.readF32()
-        return f32Value.toString() //TODO: FormatFloat
+        return this.formatFloat(f32Value.toString())
       case fieldType == "double":
         const f64Value = reader.readF64()
-        return f64Value.toString() //TODO: FormatFloat
+        return this.formatFloat(f64Value.toString())
       case fieldType == "DynamicFloat":
         return this.readDynamicFloat(reader)
       case fieldType == "DynamicInt":
@@ -289,7 +290,6 @@ export default class Parser {
     }
   }
   private readDynamicArgument(reader: DeReader) {
-    // Credit goes to Raz
     let typeIndex = Number(reader.readVarUInt())
 
     return (() => {
@@ -307,9 +307,9 @@ export default class Parser {
         case 6:
           return reader.readU32().toString()
         case 7:
-          return reader.readF32().toString() // TODO: FormatFloat
+          return this.formatFloat(reader.readF32().toString())
         case 8:
-          return reader.readF64().toString() // TODO: FormatFloat
+          return this.formatFloat(reader.readF64().toString())
         case 9:
           return reader.readBool().toString().toLowerCase()
         case 10:
@@ -377,7 +377,7 @@ export default class Parser {
               ? this.parseRpn
                 ? `%${reader.readString()}`
                 : `"${reader.readString()}"`
-              : reader.readF32().toString() //tostring(CultureInfo.InvariantCulture)?
+              : reader.readF32().toString()
           )
         }
       }
@@ -387,7 +387,7 @@ export default class Parser {
 
     {
       const isString = reader.readBool()
-      return isString ? `"${reader.readString()}"` : reader.readF32().toString() //tostring(CultureInfo.InvariantCulture)?
+      return isString ? `"${reader.readString()}"` : reader.readF32().toString()
     }
   }
 
@@ -404,5 +404,9 @@ export default class Parser {
       }
     }
     return stack.pop()
+  }
+
+  private formatFloat(value: string): string {
+    return parseFloat(value).toFixed(13)
   }
 }
