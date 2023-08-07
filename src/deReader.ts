@@ -90,6 +90,7 @@ export default class DeReader {
   }
 
   public readVarInt(): number {
+    // From ZigZag-encoded data
     const encoded = this.readVarUInt()
     const sign = encoded & BigInt(1)
     const absValue = encoded >> BigInt(1)
@@ -97,6 +98,8 @@ export default class DeReader {
   }
 
   public readVarUInt(): bigint {
+    // Stolen from some repo on Github
+
     let shift = BigInt(0)
     let result = BigInt(0)
 

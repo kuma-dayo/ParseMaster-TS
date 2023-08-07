@@ -155,6 +155,7 @@ export default class Parser {
     if (!baseconfig) return fields
     else if (!baseconfig.Fields) throw new Error(`Base class ${config.baseClass} not found!`)
 
+    // recursively merge base class fields
     baseconfig.Fields = this.mergeFields(baseconfig.Fields, config.baseClass)
 
     const mergedFields: { [key: string]: string } = fields
@@ -290,6 +291,8 @@ export default class Parser {
     }
   }
   private readDynamicArgument(reader: DeReader) {
+    // Credit goes to Raz
+
     let typeIndex = Number(reader.readVarUInt())
 
     return (() => {
@@ -320,11 +323,15 @@ export default class Parser {
     })()
   }
   private readDynamicInt(reader: DeReader) {
+    // Credit goes to Raz
+
     let isString = reader.readBool()
     return isString ? `"${reader.readString()}"` : reader.readVarInt().toString()
   }
 
   private readDynamicFloat(reader: DeReader) {
+    // Credit goes to Raz
+
     const isFormula = reader.readBool()
 
     if (isFormula) {
