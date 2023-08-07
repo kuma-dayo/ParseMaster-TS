@@ -1,7 +1,8 @@
 # ParseMaster-TS
 
 A Parser of a certain anime game's data files (WIP)  
-definitions: Version 2.8 | 4.0 Please wait for updated definitions  
+definitions: Version 2.8  
+Subsequent updates will be done privately  
 
 Based on ParseMaster created by 14eyes  
 
